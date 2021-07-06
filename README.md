@@ -31,4 +31,4 @@ Docker Compose
 2. Перейдите на http://localhost:8000/redoc/
 
 # Workflow checker
-![Checker workflow](https://github.com/nist2902/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![Checker workflow](https://github.com/nist2902/yamdb_final/actions/workflows/main.yml/badge.svg)
