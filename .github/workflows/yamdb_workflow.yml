@@ -52,7 +52,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          stack_file_name: docker-compose.yaml
           script: |
             sudo docker pull nist2902/yamdb_final
             sudo docker-compose down
