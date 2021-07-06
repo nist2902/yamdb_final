@@ -52,18 +52,22 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          stack_file_name: docker-compose.yaml
           script: |
             sudo docker pull nist2902/yamdb_final
-            sudo docker-compose stop
-            sudo docker-compose rm web
-            touch .env 
-            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
-            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
-            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
-            echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-            echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+            sudo docker-compose down
+            sudo rm -rf env
+            mkdir env
+            touch env/.env.db env/.env.prod
+            echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> env/.env.db
+            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> env/.env.db
+            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> env/.env.db
+            echo DB_HOST=${{ secrets.DB_HOST }} >> env/.env.prod
+            echo DB_NAME=${{ secrets.DB_NAME }} >> env/.env.prod
+            echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> env/.env.prod
+            echo DB_PORT=${{ secrets.DB_PORT }} >> env/.env.prod
+            echo DB_USER=${{ secrets.DB_USER }} >> env/.env.prod
+            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> env/.env.prod
             sudo docker-compose up -d
 
   send_message:
