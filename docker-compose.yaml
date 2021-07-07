@@ -9,7 +9,6 @@ services:
       - ./.env
   web:
     image: nist2902/yamdb_final:latest
-    build: .
     restart: always
     volumes:
       - static_value:/code/static/
