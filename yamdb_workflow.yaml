@@ -23,7 +23,7 @@ jobs:
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
-    on: push
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: tests
     steps:
@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    on: push
+    if: github.ref == 'refs/heads/master'
     needs: build_and_push_to_docker_hub
     steps:
       - name: executing remote ssh commands to deploy
@@ -73,7 +73,7 @@ jobs:
 
   send_message:
     name: Send message
-    on: push
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     needs: deploy
     steps:
