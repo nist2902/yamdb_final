@@ -95,8 +95,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'redoc'), ] 
-STATIC_URL = '/static/' 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'redoc'), ]
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
